@@ -1,0 +1,31 @@
+.employees {
+    width: 100%;
+}
+
+.employee-cards-container {
+    overflow-x: auto;
+    display: flex;
+    gap: 10px; /* интервал между картами */
+}
+
+.employee-card {
+    background-color: #a0d88f;
+    padding: 15px; /* отступы внутри карты от границ */
+    min-width: 300px;
+    min-height: 150px;
+}
+
+.employee-fullname {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.employee-email,
+.employee-phone,
+.employee-position,
+.employee-birthdate {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}

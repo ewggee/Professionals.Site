@@ -1,0 +1,86 @@
+﻿@using ProfessionalsSite.Core.Models
+@{
+    var employees = ViewBag.Employees as List<EmployeeDto> ?? [];
+    var news = ViewBag.News as List<NewsDto> ?? [];
+    var events = ViewBag.NewsEvents as List<NewsEventDto> ?? [];
+}
+
+<div class="employees">
+    <h3>Сотрудники</h3>
+    <div class="employee-cards-container">
+        @foreach (var employee in employees)
+        {
+            <div class="employee-card">
+                <p class="employee-fullname">@employee.FullName</p>
+                <p class="employee-email">@employee.CorporativeEmail</p>
+                <p class="employee-phone">@employee.WorkPhone</p>
+                <p class="employee-position">@employee.PostName</p>
+                <p class="employee-birthdate">@employee.BitrhDate.Value.ToString("dd MMMM")</p>
+            </div>
+        }
+    </div>
+</div>
+<div class="events-news-block">
+    <div class="events">
+        <h3>События</h3>
+        <div class="events-container">
+            @foreach (var item in events)
+            {
+                <div class="event-card">
+                    <div class="event-title">
+                        @item.Title
+                    </div>
+                    <div class="event-text">
+                        @item.Text
+                    </div>
+                    <div class="event-details">
+                        <div class="event-date">
+                            <span class="event-date-icon">📅</span>
+                            @item.CreatedAt.ToShortDateString()
+                        </div>
+                        <div class="event-author">
+                            @item.AuthorFullName
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="news">
+        <h3>Новости</h3>
+        <div class="news-container">
+            @foreach (var item in news)
+            {
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="data:image;base64,@Convert.ToBase64String(item.Picture)" alt="Picture"/>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-title">
+                            @item.Description
+                        </div>
+                        <div class="news-description">
+                            @item.Description
+                        </div>
+                        <div class="news-date">
+                            <span class="event-date-icon">&#128197;</span>
+                            @item.CreatedAt.ToShortDateString()
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="css/news.css"/>
+<link rel="stylesheet" href="css/employeeCards.css"/>
+<link rel="stylesheet" href="css/newsEvents.css"/>
+
+<style>
+    .events-news-block { /* Блок для событий и новостей */
+        display: flex;
+        justify-content: space-between; /* Размещение блоки по краям */
+        gap: 20px;
+    }
+</style>
